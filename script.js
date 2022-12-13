@@ -1,3 +1,26 @@
+
+const rockBtn = document.querySelector('.rockBtn');
+rockBtn.addEventListener('click', () => {
+    let choice = 'rock';
+    console.log('They chose rock');
+    return choice;
+});
+
+const paperBtn = document.querySelector('.paperBtn');
+paperBtn.addEventListener('click', () => {
+    let choice = 'paper';
+    console.log('They chose paper');
+    return choice;
+});
+
+const scissorsBtn = document.querySelector('.scissorsBtn');
+scissorsBtn.addEventListener('click', () => {
+    let choice ='scissors';
+    console.log('They chose scissors');
+    return choice;
+});
+
+
 function getComputerChoice() {
     let choices = ['rock', 'paper', 'scissors'];
     let randomIndex = Math.floor(Math.random()*choices.length);
@@ -47,7 +70,7 @@ let playerScore = 0;
 function playGame() {
     
 for (let i = 0; i < 5; i++) {
-    const playerSelection = prompt('rock, paper, or scissors?');
+    const playerSelection = choice;
     const computerSelection = getComputerChoice();
     console.log(playRound(playerSelection, computerSelection));
 }

@@ -1,156 +1,44 @@
-
-const rockBtn = document.querySelector('.rockBtn');
-rockBtn.addEventListener('click', () => {
-    let choice = 'rock';
-    playRound(choice, getComputerChoice());
-    console.log(choice);
-    return choice;
-});
-
-const paperBtn = document.querySelector('.paperBtn');
-paperBtn.addEventListener('click', () => {
-    let choice = 'paper';
-    playRound(choice, getComputerChoice());
-    console.log(choice);
-    return choice;
-});
-
-const scissorsBtn = document.querySelector('.scissorsBtn');
-scissorsBtn.addEventListener('click', () => {
-    let choice ='scissors';
-    playRound(choice, getComputerChoice());
-    console.log(choice);
-    return choice;
-});
+let winners = [];
+const choices = ['rock', 'paper', 'scissors'];
 
 
-function getComputerChoice() {
-    let choices = ['rock', 'paper', 'scissors'];
-    let randomIndex = Math.floor(Math.random()*choices.length);
-    let randomElement = choices[randomIndex];
-    console.log(randomElement);
-    return randomElement;
+
+function startGame() {
+    playRound();
+
+    setWins();
 }
 
-let computerWin = 'The computer won! Dang it!';
-let playerWin = 'You won! Awesome!';
-let tie = 'It\'s a tie!'
+function playRound(round) {
+    const computerChoice = computerSelect();
 
-function playRound(choice, randomElement) {
-    
-    if (choice == 'rock' && randomElement == 'rock') {
-        const results = document.querySelector('#results');
-        const round = document.createElement('div');
-        round.classList.add('round');
-        round.textContent = tie;
-        results.appendChild(round);
-        return tie;
+    const winner = checkWinner(playerChoice, computerChoice);
 
-    } else if (choice == 'rock' && randomElement == 'paper') {
-        const results = document.querySelector('#results');
-        const round = document.createElement('div');
-        round.classList.add('round');
-        round.textContent = computerWin;
-        results.appendChild(round);
+    winners.push(winner);
+}
 
-        const cScore = document.querySelector('#computerScore');
-        cScore.textContent = 'Computer Score: ' + computerScore++;
-        return computerWin;
+function computerSelect() {
 
-    } else if (choice == 'rock' && randomElement == 'scissors') {
-        const results = document.querySelector('#results');
-        const round = document.createElement('div');
-        round.classList.add('round');
-        round.textContent = playerWin;
-        results.appendChild(round);
+    return choices[Math.floor(Math.random() * choices.length)];
+}
 
-        const pScore = document.querySelector('#playerScore');
-        pScore.textContent = 'Player Score: ' + playerScore++;
-        return playerWin;
-
-    } else if (choice == 'scissors' && randomElement == 'scissors') {
-        const results = document.querySelector('#results');
-        const round = document.createElement('div');
-        round.classList.add('round');
-        round.textContent = tie;
-        results.appendChild(round);
-        return tie;
-
-    } else if (choice == 'scissors' && randomElement == 'paper') {
-        const results = document.querySelector('#results');
-        const round = document.createElement('div');
-        round.classList.add('round');
-        round.textContent = playerWin;
-        results.appendChild(round);
-
-        const pScore = document.querySelector('#playerScore');
-        pScore.textContent = 'Player Score: ' + playerScore++;
-        return playerWin;
-
-    } else if (choice == 'scissors' && randomElement == 'rock') {
-        const results = document.querySelector('#results');
-        const round = document.createElement('div');
-        round.classList.add('round');
-        round.textContent = computerWin;
-        results.appendChild(round);
-
-        const cScore = document.querySelector('#computerScore');
-        cScore.textContent = 'Computer Score: ' + computerScore++;
-        return computerWin;
-
-    } else if (choice == 'paper' && randomElement == 'paper') {
-        const results = document.querySelector('#results');
-        const round = document.createElement('div');
-        round.classList.add('round');
-        round.textContent = tie;
-        results.appendChild(round);
-        return tie;
-
-    } else if (choice == 'paper' && randomElement == 'rock') {
-        const results = document.querySelector('#results');
-        const round = document.createElement('div');
-        round.classList.add('round');
-        round.textContent = playerWin;
-        results.appendChild(round);
-
-        const pScore = document.querySelector('#playerScore');
-        pScore.textContent = 'Player Score: ' + playerScore++;
-        return playerWin;
-
-    } else if (choice == 'paper' && randomElement == 'scissors') {
-        const results = document.querySelector('#results');
-        const round = document.createElement('div');
-        round.classList.add('round');
-        round.textContent = computerWin;
-        results.appendChild(round);
-
-        const cScore = document.querySelector('#computerScore');
-        cScore.textContent = 'Computer Score: ' + computerScore++;
-        return computerWin;
-
+function checkWinner(choice1, choice2) {
+    if (
+        (choice1 == 'rock' && choice2 == 'scissors') ||
+        (choice1 == 'scissors' && choice2 == 'paper') ||
+        (choice1 == 'paper' && choice2 == 'rock')
+    ) {
+        return 'Player';
+    } else if (choice1 == choice2) {
+        return 'Tie';
     } else {
-        return "Oops! Try typing 'rock', 'paper', or 'scissors'."
+        return 'Computer';
     }
-
 }
 
-let computerScore = 1;
-let playerScore = 1;
-
-function playGame() {
-    
-for (let i = 0; i < 5; i++) {
-    const choice = choice;
-    const randomElement = getComputerChoice();
-    console.log(playRound(choice, randomElement));
+function setWins() {
+    const pWinCount = winners.filter((item) => item == 'Player').length;
+    const cWinCount = winners.filter((item) => item == 'Computer').length;
+    const ties = winners.filter((item) => item == 'Tie').length;
 }
 
-if (computerScore > playerScore) {
-    return 'Shoot! You lost. Play again?';
-} else if (computerScore < playerScore) {
-    return 'Hooray! You won. Play again!';
-} else {
-    return 'It was a tie. Play again.';
-}
-
-}

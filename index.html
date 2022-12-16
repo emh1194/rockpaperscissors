@@ -1,24 +1,34 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Rock Paper Scissors!</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="stlyes.css">
-    </head>
-    <body>
-        
-        <button class="rockBtn">Rock!</button>
-        <button class="paperBtn">Paper!</button>
-        <button class="scissorsBtn">Scissors!</button>
-        <br>
-        <div id="results">Who Will Win?</div>
-        <div id="computerScore">Computer Score: </div>
-        <div id="playerScore">Player Score: </div>
-            
-
-        <script src="script.js" async defer></script>
-    </body>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rock Paper Scissors!</title>
+    <link rel="stylesheet" href = "stlyes.css">
+</head>
+<body>
+    <div class="score">
+        <h1 class="ties">Ties: 0</h1>
+    </div>
+    <div class="winner">
+        <h1 class="winner"></h1>
+        <button class="reset" onclick="restartGame()">Play Again?</button>
+    </div>
+    <div class="playerSection">
+        <h3 class="playerChoice"></h3>
+        <h3 class="playerScore">Score: 0</h3>
+            <img src="./images/rock.png" alt="Rock" class="pImg" id="rock">
+            <img src="./images/paper2.png" alt="Paper" class="pImg" id="paper">
+            <img src="./images/scissors.png" alt="Scissors" class="pImg" id="scissors">
+    </div>
+    <div class="computerSection">
+        <h3 class="computerChoice"></h3>
+        <h3 class="computerScore">Score: 0</h3>
+            <img src="./images/rock.png" alt="Rock" class="rock">
+            <img src="./images/paper2.png" alt="Paper" class="paper">
+            <img src="./images/scissors.png" alt="Scissors" class="scissors">
+    </div>
+</body>
+<script src = "script.js"></script>
 </html>
